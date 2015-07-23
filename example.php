@@ -1,23 +1,13 @@
 <?php
 
-  // Load this lib
-  require_once __DIR__ . '/ThriftSQL.phar';
+// Load this lib
+require_once __DIR__ . '/vendor/autoload.php';
 
-  // Try out a Hive query
-  $hive = new \ThriftSQL\Hive( 'hive.host.local' );
-  $hiveTables = $hive
-    ->setSasl( false ) // To turn SASL auth off, on by default
-    ->connect()
-    ->queryAndFetchAll( 'SHOW TABLES' );
-  print_r( $hiveTables );
+$impala = new \ThriftSQL\Impala( '183.61.135.12' );
+$impalaTables = $impala
+  ->connect()
+  ->queryAndFetchAll( 'SELECT CONNT(unique_account_id) AS pay_times FROM ossdw.raw_payments ORDER BY time DESC LIMIT 10' );
 
-  // Try out an Impala query
-  $impala = new \ThriftSQL\Impala( 'impala.host.local' );
-  $impalaTables = $impala
-    ->connect()
-    ->queryAndFetchAll( 'SHOW TABLES' );
-  print_r( $impalaTables );
+var_dump($impalaTables);
 
-  // Don't forget to clear the client and close socket.
-  $hive->disconnect();
-  $impala->disconnect();
+$impala->disconnect();

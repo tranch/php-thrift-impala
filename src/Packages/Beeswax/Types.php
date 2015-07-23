@@ -582,7 +582,7 @@ class ResultsMetadata {
   /**
    * The schema of the results
    *
-   * @var \ThriftSQL\metastore\Schema
+   * @var \Apache\Hadoop\Hive\Schema
    */
   public $schema = null;
   /**
@@ -663,7 +663,7 @@ class ResultsMetadata {
       {
         case 1:
           if ($ftype == TType::STRUCT) {
-            $this->schema = new \ThriftSQL\metastore\Schema();
+            $this->schema = new \Apache\Hadoop\Hive\Schema();
             $xfer += $this->schema->read($input);
           } else {
             $xfer += $input->skip($ftype);

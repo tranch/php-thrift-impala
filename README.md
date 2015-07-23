@@ -13,7 +13,7 @@ Usage Example
 
 ```php
 // Load this lib
-require_once __DIR__ . '/ThriftSQL.phar';
+require_once __DIR__ . '/vendor/autoload.php';
 
 // Try out a Hive query
 $hive = new \ThriftSQL\Hive( 'hive.host.local', 10000, 'user', 'pass' );
