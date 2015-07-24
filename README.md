@@ -1,7 +1,7 @@
 PHP ThriftSQL
 =============
 
-The `ThriftSQL.phar` archive aims to provide access to SQL-on-Hadoop frameworks for PHP. It bundles Thrift and various service packages together and exposes a common interface for running queries over the various frameworks.
+This project based [Automattic/php-thrift-sql](https://github.com/Automattic/php-thrift-sql).
 
 Currently the following engines are supported:
 
@@ -15,21 +15,13 @@ Usage Example
 // Load this lib
 require_once __DIR__ . '/vendor/autoload.php';
 
-// Try out a Hive query
-$hive = new \ThriftSQL\Hive( 'hive.host.local', 10000, 'user', 'pass' );
-$hiveTables = $hive
-  ->connect()
-  ->queryAndFetchAll( 'SHOW TABLES' );
-print_r( $hiveTables );
-
 // Try out an Impala query
-$impala = new \ThriftSQL\Impala( 'impala.host.local' );
+$impala = new \ThriftSQL\Impala( 'hd-node1' );
 $impalaTables = $impala
   ->connect()
   ->queryAndFetchAll( 'SHOW TABLES' );
 print_r( $impalaTables );
 
 // Don't forget to clear the client and close socket.
-$hive->disconnect();
 $impala->disconnect();
 ```

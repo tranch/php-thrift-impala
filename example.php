@@ -3,11 +3,11 @@
 // Load this lib
 require_once __DIR__ . '/vendor/autoload.php';
 
-$impala = new \ThriftSQL\Impala( '183.61.135.12' );
+$impala = new \ThriftSQL\Impala( 'hd-node1' );
 $impalaTables = $impala
   ->connect()
-  ->queryAndFetchAll( 'SELECT CONNT(unique_account_id) AS pay_times FROM ossdw.raw_payments ORDER BY time DESC LIMIT 10' );
+  ->queryAndFetchAll( 'SHOW DATABASES' );
 
-var_dump($impalaTables);
+print_r($impalaTables);
 
 $impala->disconnect();
